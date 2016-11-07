@@ -1,0 +1,26 @@
+os:
+- osx
+language: cpp
+compiler: clang
+before_install:
+- rvm get head # fix  shell_session_update: command not found
+- brew update
+- brew install qt jack ecasound fftw
+- wget https://dl.dropboxusercontent.com/u/3464720/JackOSX.0.92_b3.pkg  # install current jack beta
+- sudo installer -store -pkg JackOSX.0.92_b3.pkg -target /
+- mkdir -p autotools/m4
+- autoreconf --force --install
+script:
+- "./configure --enable-app-bundle"
+- make
+- make dmg
+before_deploy:
+- "./cleanse.sh"
+deploy:
+  skip_cleanup: true
+  local_dir: dmg
+  provider: s3
+  access_key_id: AKIAJP3FY3NVXTVEFVLA
+  secret_access_key:
+    secure: MzCcHZREKQKY3HELp3UIDh1/0Uk6dvJKbpzhvwxO3fgm40QRzQSmzw9B6Ub3wGwneMQP1vuSr1m7Be2eLOg9TEvPzjpKXoRwfVyS7C76EbGcdewBSiLROD+MpMyY5epMfKMjxk1Hd9R7yKyBfLfcbRIt58ER6AhKyC9Md3Rn7n9zmovylGJoxyr/kFeB3iMNH75NOwuSO8ohE6bTdm9pVStuQnGTMSqXIhIqW9vx9MebTsXp5ny6LZXT53DN0rm5B0BcLWWAgZIL29eO0GpFn5mXaXE2WIetgLieWE9QO7cgZr9+lJ01BfKfuucTf0pO5oOH/tzgEMpEp3AIzYz7OLy+4tcQzpHs4t3E1yFIXYHcjr2ESd/MX8fLj/mG6EuWLwEf3cJMbhZaHRdY3Z3PsN4ueRT2sbd+8XcTGqa7D+clKBlVpW6maIGQxKbzqx8+Vs5SeWoLQmPX8qjiqNyhzKUoFIRnCye5etbFtxXtzvvus/8DUFszO/4plQ2o1ZAFGJZGsm/CaHAS96xEm4uYEdBTHXYWj09RsUuNJ8iAxiy/HqxkPcRaZdgFtUIJsTQvgKSfvBHWNZLkykEemYv2t1zxZfChMIh4WKYbeuGQDdReGqfeW7X2qBesi4nq/I/H18j5to5nA440VHjOPMUUMcUimNW4LB0SVSZnguX8+ec=
+  bucket: travistest
