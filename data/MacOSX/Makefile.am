@@ -8,6 +8,7 @@
 ## This file is only taken into account if --enable-app-bundle was chosen!
 if ENABLE_APP_BUNDLE
 
+dmgdir ?= dmg
 dist_pkgdata_DATA = SSRIcon.icns qt.conf
 contentsdir = $(prefix)
 contents_DATA = Info.plist
@@ -80,6 +81,8 @@ dmg:
 		"$(top_builddir)/SSRTemp.dmg"
 	$(RM) "$(top_builddir)/SSRTemp.dmg"
 	$(RM) -r "$(dmgrootdir)"
+	mkdir -p $(top_builddir)/$(dmgdir)
+	mv -f $(top_builddir)/$(DMG_NAME) $(top_builddir)/$(dmgdir)/
 
 .PHONY: dmg
 
