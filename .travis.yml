@@ -6,6 +6,7 @@ before_install:
 - rvm get head # fix  shell_session_update: command not found
 - brew update
 - brew install qt jack ecasound fftw asio
+- brew link qt
 - wget https://dl.dropboxusercontent.com/u/3464720/JackOSX.0.92_b3.pkg  # install current jack beta
 - sudo installer -store -pkg JackOSX.0.92_b3.pkg -target /
 - mkdir -p autotools/m4
