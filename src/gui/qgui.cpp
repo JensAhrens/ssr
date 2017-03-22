@@ -215,9 +215,9 @@ ssr::QGUI::~QGUI()
 /**
  * This function is used to verify if setting the sample buffer (enabling 
  * anti-aliasing) has succeeded.
- * @return current QGLFormat
+ * @return current QSurfaceFormat
  */
-QGLFormat ssr::QGUI::format() const
+QSurfaceFormat ssr::QGUI::format() const
 {
   return _gui.format();
 }

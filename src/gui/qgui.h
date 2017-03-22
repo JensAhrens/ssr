@@ -56,7 +56,7 @@ class QGUI : public QObject
 
     ~QGUI();
 
-    QGLFormat format () const;
+    QSurfaceFormat format () const;
     int run(); ///< start the GUI.
 
   private:

@@ -1119,22 +1119,22 @@ Controller<Renderer>::_start_gui(const std::string& path_to_gui_images
   // Check whether the system supports OpenGL and set default OpenGL format
   // which will be applied to QGLWidget.
   // Should be equivalent to glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
-  QGLFormat gl_format = QGLFormat::defaultFormat();
-  gl_format.setSampleBuffers(true);
-  gl_format.setRgba(true);
-  gl_format.setDoubleBuffer(true);
-  gl_format.setDepth(true);
-  QGLFormat::setDefaultFormat(gl_format);
+  QSurfaceFormat gl_format = QSurfaceFormat::defaultFormat();
+  // gl_format.setSampleBuffers(true);
+  // gl_format.setRgba(true);
+  // gl_format.setDoubleBuffer(true);
+  // gl_format.setDepth(true);
+  QSurfaceFormat::setDefaultFormat(gl_format);
 
   _gui.reset(new QGUI(*this, _scene, _argc, _argv,
     path_to_gui_images, path_to_scene_menu));
 
   // check if anti-aliasing is possible
-  if (!_gui->format().sampleBuffers())
-  {
-    WARNING("This system does not provide sample buffer support.\n"
-        "I can not enable anti-aliasing for OpenGl stuff.");
-  }
+  // if (!_gui->format().sampleBuffers())
+  // {
+  //   WARNING("This system does not provide sample buffer support.\n"
+  //       "I can not enable anti-aliasing for OpenGl stuff.");
+  // }
 
   return _gui->run();
 }

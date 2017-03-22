@@ -37,6 +37,7 @@
 #endif
 
 #include <QtOpenGL/QGLWidget>
+#include <QOpenGLWidget>
 #include <QtWidgets/QAction>
 #include <QtCore/QString>
 #include <QtWidgets/QWidget>
@@ -86,7 +87,7 @@ namespace ssr
 {
 
 /// open GL plotter
-class QOpenGLPlotter : public QGLWidget
+class QOpenGLPlotter : public QOpenGLWidget
 {
   Q_OBJECT
 
