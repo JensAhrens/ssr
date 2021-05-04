@@ -71,7 +71,7 @@ On Linux, start SSR using::
 
   ssr-brs --fudi-server=1174 1-in-1-out.asd
 
-On macOS, start SSR using
+On macOS, start SSR using::
 
   open -a SoundScapeRenderer --args --brs "--fudi-server=1174 1-in-1-out.asd"
 
